@@ -10,5 +10,4 @@ import lw.com.Admin.utils.Response;
 @NoArgsConstructor
 public class TokenVo {
     private String token;
-
 }

@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @Slf4j
 public class SecurityConfig {
+    private String[] WHILE_LIST= {"/auth/**","/v3/api-docs/**", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui/**", "/webjars/**"};
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -38,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
         // 放行login接口
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll()
+        http.authorizeHttpRequests(auth -> auth.requestMatchers(WHILE_LIST).permitAll()
                 .anyRequest().authenticated()
         );
         http.formLogin(new Customizer<FormLoginConfigurer<HttpSecurity>>() {

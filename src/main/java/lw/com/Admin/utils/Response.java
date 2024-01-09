@@ -8,17 +8,17 @@ import org.springframework.http.HttpStatus;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response {
+public class Response<T> {
     private Integer code;
     private String msg;
-    private Object data;
-    public  static Response newResponse_200(Object data) {
+    private T data;
+    public static <T>  Response newResponse_200(T data) {
         return new Response(200,"success",data);
     }
-    public static Response newAdminExceptionResponse(Integer code,String msg) {
+    public  static  Response newAdminExceptionResponse(Integer code,String msg) {
         return new Response(code,msg,null);
     }
-    public static Response newInterExceptionResponse(String msg) {
+    public  static  Response newInterExceptionResponse(String msg) {
         return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg,null);
     }
 }

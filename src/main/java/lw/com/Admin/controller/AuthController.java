@@ -8,10 +8,6 @@ import lw.com.Admin.service.IUserService;
 import lw.com.Admin.utils.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @Slf4j
