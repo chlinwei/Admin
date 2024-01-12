@@ -1,4 +1,4 @@
-package lw.com.Admin.controller;
+package lw.com.Admin.controller.auth;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class AuthController {
      */
     @PostMapping("doLogin")
     @ResponseBody
-    public Response login(@RequestBody LoginParams loginParams) {
+    public Response<TokenVo> login(@RequestBody LoginParams loginParams) {
         log.info("==============================={}",loginParams);
         String token = userService.login(loginParams);
         TokenVo tokenVo =  new TokenVo(token);

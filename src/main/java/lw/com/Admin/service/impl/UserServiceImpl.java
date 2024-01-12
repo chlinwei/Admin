@@ -40,7 +40,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUs
      */
     @Override
     public String login(LoginParams loginParams) {
-        log.info("login method");
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginParams.getUsername(), loginParams.getPassword());
         Authentication authentication = null;
@@ -52,16 +51,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUs
             throw new AdminException(ErrorEnum.USER_AUTHTICATION_ERROR);
         }
         // 就获取用户信息，返回token
-        User umsSysUser = (User) authentication.getPrincipal();
-        if(umsSysUser == null) {
+        User user = (User) authentication.getPrincipal();
+        if(user == null) {
             throw new AdminException(ErrorEnum.USER_AUTHTICATION_ERROR);
         }
         // 将用户信息通过JWT生成token，返回给前端
         Map<String, Object> map = new HashMap<>();
-        map.put("id",umsSysUser.getId());
-        map.put("username",umsSysUser.getUsername());
-        map.put("avatar",umsSysUser.getAvatar());
-        map.put("perms",umsSysUser.getPerms());
+        map.put("id",user.getId());
+        map.put("username",user.getUsername());
+        map.put("avatar",user.getAvatar());
+        map.put("perms",user.getPerms());
         return jwtUtils.createToken(map);
     }
 }

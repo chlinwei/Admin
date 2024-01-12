@@ -17,6 +17,7 @@ public class Menu implements Serializable {
 
     private Long parentId;
     private String menuName;
+    private String path;
     private Integer sort;
     private String perms;
     private Integer menuType;

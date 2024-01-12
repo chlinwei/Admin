@@ -1,6 +1,7 @@
 package lw.com.Admin.config;
 
 import lombok.extern.slf4j.Slf4j;
+import lw.com.Admin.web.AdminAuthorizationManager;
 import lw.com.Admin.web.AdminUserDetailsService;
 import lw.com.Admin.web.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @Slf4j
 public class SecurityConfig {
-    private String[] WHILE_LIST= {"/auth/**","/v3/api-docs/**", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui/**", "/webjars/**"};
-
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private AdminUserDetailsService adminUserDetailsService;
+    
+    @Autowired
+    private AdminAuthorizationManager adminAuthorizationManager;
 
 
         /**
@@ -39,8 +41,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
         // 放行login接口
-        http.authorizeHttpRequests(auth -> auth.requestMatchers(WHILE_LIST).permitAll()
-                .anyRequest().authenticated()
+        http.authorizeHttpRequests(auth -> auth.requestMatchers(adminAuthorizationManager.getWhileList()).permitAll()
+                .anyRequest().access(adminAuthorizationManager)
         );
         http.formLogin(new Customizer<FormLoginConfigurer<HttpSecurity>>() {
             @Override

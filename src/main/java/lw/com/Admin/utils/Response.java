@@ -12,7 +12,7 @@ public class Response<T> {
     private Integer code;
     private String msg;
     private T data;
-    public static <T>  Response newResponse_200(T data) {
+    public static <T>  Response<T> newResponse_200(T data) {
         return new Response(200,"success",data);
     }
     public  static  Response newAdminExceptionResponse(Integer code,String msg) {
