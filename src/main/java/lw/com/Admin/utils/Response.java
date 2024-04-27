@@ -21,6 +21,14 @@ public class Response<T> {
     public  static  Response newInterExceptionResponse(String msg) {
         return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg,null);
     }
+    public static <T>  Response<T> newResponse_200_withoutData() {
+        Response response = new Response();
+        response.code = 200;
+        response.msg = "success";
+        return response;
+    }
+
+
 }
 
 

@@ -11,6 +11,7 @@ public enum ErrorEnum {
     USER_TOKEN_EXPIRED_ERROR(1005,"JWT expired"),
     USERNAME_OR_PASSWORD_ERROR(1002,"用户名或者密码错误"),
     USER_AUTHTICATION_ERROR(1003,"用户验证错误");
+    
     @Getter
     private Integer errCode;
     @Getter

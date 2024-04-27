@@ -1,13 +1,11 @@
 package lw.com.Admin.domain.vo.sys;
 
 import lombok.Data;
-import lw.com.Admin.domain.entity.Role;
+
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
-public class SysUser {
+public class SysUserVo {
     private Long id;
     private String username;
     private String nickname;

@@ -36,7 +36,7 @@ public class AdminUserDetailsService implements UserDetailsService {
         User user = userMapper.selectUserByUsername(username);
         // 2、查询用户的权限信息
         if(user != null) {
-            Set<Role> roleSet =  user.getRoleSet();
+            List<Role> roleSet =  user.getRoleSet();
             // 存储角色id，进行批量查询，不要在for循环中查询数据库
             Set<Long> roleIds = new HashSet<>(roleSet.size());
             // 获取用户的权限列表

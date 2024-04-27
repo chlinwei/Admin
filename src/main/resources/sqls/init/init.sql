@@ -145,22 +145,22 @@ INSERT INTO `ums_site_user` VALUES (1, 'APP用户', '稻草', '111111111', '', '
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户账号',
-  `nickname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户昵称',
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '用户邮箱',
-  `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '手机号码',
+  `username` varchar(30) UNIQUE NOT NULL COMMENT '用户账号',
+  `nickname` varchar(30) NOT NULL COMMENT '用户昵称',
+  `email` varchar(50) UNIQUE  NULL DEFAULT '' COMMENT '用户邮箱',
+  `mobile` varchar(11) NULL DEFAULT '' COMMENT '手机号码',
   `sex` int NULL DEFAULT 0 COMMENT '用户性别（0男 1女 2未知）',
-  `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '头像地址',
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '密码',
+  `avatar` varchar(100)  NULL DEFAULT '' COMMENT '头像地址',
+  `password` varchar(100)  NULL DEFAULT '' COMMENT '密码',
   `status` int NULL DEFAULT 0 COMMENT '帐号状态（0正常 1停用）',
   `creator` bigint NULL DEFAULT 1 COMMENT '创建者',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `updater` bigint NULL DEFAULT 1 COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
   `deleted` tinyint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '后台用户表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COMMENT = '后台用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

@@ -36,8 +36,10 @@ public class User implements Serializable, UserDetails {
     private String remark;
 
     // 角色信息
-    private Set<Role> roleSet = new HashSet<>();
+    @TableField(exist = false)
+    private List<Role> roleSet = new ArrayList<>();
     //权限的信息
+    @TableField(exist = false)
     private List<String> perms = new ArrayList<>();
 
     /**

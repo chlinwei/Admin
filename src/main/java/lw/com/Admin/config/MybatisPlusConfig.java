@@ -24,6 +24,5 @@ import java.util.List;
             mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
             return mybatisPlusInterceptor;
         }
-
     }
 
